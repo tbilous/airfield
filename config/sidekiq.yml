@@ -1,0 +1,13 @@
+---
+:concurrency: 5
+:logfile: ./log/sidekiq.log
+staging:
+  :concurrency: 10
+production:
+  :concurrency: 40
+  :logfile: ./log/sidekiq.log
+:queues:
+  - critical
+  - default
+  - low
+  - railway
