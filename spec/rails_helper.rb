@@ -10,6 +10,7 @@ require 'factory_bot_rails'
 require 'action_cable/testing/rspec'
 require 'sidekiq/testing'
 require 'rake'
+require 'mongoid-rspec'
 
 FactoryBot.definition_file_paths << File.expand_path('factories', __dir__)
 FactoryBot.reload
@@ -45,4 +46,10 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.example_status_persistence_file_path = 'spec/failures.txt'
   config.include ActiveJob::TestHelper
+  config.include Mongoid::Matchers, type: :model
+
+  # Clean/Reset Mongoid DB prior to running each test.
+  config.before do
+    Mongoid.purge!
+  end
 end

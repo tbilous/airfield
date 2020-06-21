@@ -1,10 +1,8 @@
 class Plain
   include Mongoid::Document
-  # include ActiveModel::Validations
   include Flyable
 
-  field :state, type: String
-  has_many :plain_histories
+  has_many :plain_histories, dependent: :destroy
 
   after_create :write_history
 
@@ -33,6 +31,6 @@ class Plain
   end
 
   def write_history
-    plain_histories.create(state: state, created_at: Time.current)
+    plain_histories.create(state: state)
   end
 end

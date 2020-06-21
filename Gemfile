@@ -76,6 +76,7 @@ group :test do
   gem 'action-cable-testing'
   gem 'fakeredis'
   gem 'json_spec'
+  gem 'mongoid-rspec'
   gem 'rails-controller-testing'
   gem 'rspec-sidekiq'
   gem 'rspec_junit_formatter'

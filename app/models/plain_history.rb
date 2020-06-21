@@ -1,8 +1,8 @@
 class PlainHistory
   include Mongoid::Document
+  include Mongoid::Timestamps::Created
 
   field :state, type: String
-  field :created_at, type: DateTime
 
   belongs_to :plain
 end
