@@ -5,7 +5,7 @@ class RunwayJob < ApplicationJob
     plain = Plain.find_by(id: id)
     return unless plain.taxiway?
 
-    sleep((1..2).to_a.sample)
+    sleep((10..20).to_a.sample)
 
     plain.fly
   rescue Mongoid::Errors::DocumentNotFound => e

@@ -1,24 +1,29 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Задача: `Есть аэропорт с одной взлетной полосой. Диспетчеру предоставляется интерфейс, позволяющий отправить самолет на взлет.
+           Интерфейс позволяет отправлять несколько самолетов на взлет одновременно. Сам взлет занимает 10+ секунд. 
+           Интерфейс отображает текущий статус самолета (вылетел, ожидает вылета (если отправили на взлет несколько), в ангаре), а также историю изменения статуса. 
+           Требования: 
+           - обновление фронтэнда в реальном времени;
+           - взлётом занимается отдельный микросервис, который отсчитывает случайное количество секунд и возвращает сигнал о том, что самолёт взлетел
+           Пожелания:
+           - для хранения использовать NoSQL базу данных.`
+### Решение
+* Ruby v2.7.0p0
+* Rails v6.0.3.2
+* В качестве "отдельного микросервиса" использован sidekiq. Реализация fifo queue  в задаче не указанна потому настроил concurrency в sidekiq так, что-бы для очереди runway - равнялось 1
+* БД - Mongo
+* Вебсокеты - ActionCable
+* frontend - Webpacker, React
 
-Things you may want to cover:
+### Установка
+* Обычная для RoR приложения
 
-* Ruby version
+### Работа с приложением
+* Запустить sidekiq
+* Запустить сервис приложения
+* Перейти на страницу http::/localhost:3000 нажать кнопку "Add planes to hangar"
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Тесты
+* `rspec spec/`
+    - Приечание - acceptance тесты для фронтенда не писал.
