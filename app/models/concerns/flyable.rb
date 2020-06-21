@@ -28,7 +28,6 @@ module Flyable
     def broadcast
       json = broadcast_serialize
       ActionCable.server.broadcast "plain_#{json['id']}", json
-      # ActionCable.server.broadcast "plain_#{json.dig('id')}", json
     end
 
     def broadcast_serialize
