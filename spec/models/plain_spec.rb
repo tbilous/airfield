@@ -9,4 +9,14 @@ RSpec.describe Plain, type: :model do
 
     it { expect { subject }.to change(PlainHistory, :count).by(1) }
   end
+
+  describe 'broadcast to channel' do
+    let(:plain) { described_class.create }
+
+    it 'changing state event should initialize broadcast to PlainChannel' do
+      Options::Plain::States.all.drop(1).each do |state|
+        expect { plain.send(state.to_sym) }.to have_broadcasted_to("plain_#{plain.id}").from_channel(PlainChannel)
+      end
+    end
+  end
 end

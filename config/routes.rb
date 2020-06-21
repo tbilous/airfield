@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   resource :airfields, only: :show
 
   root 'airfields#show'
+  mount ActionCable.server => '/cable'
 end
