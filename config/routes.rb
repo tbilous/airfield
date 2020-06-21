@@ -2,10 +2,13 @@ require 'sidekiq/web'
 require 'sidekiq-status/web'
 
 Rails.application.routes.draw do
-  resource :plains, only: [:index], defaults: { format: :json } do
-    get :take_off
+  resources :plains, only: [:index], defaults: { format: :json } do
+    post :take_off
   end
-  resource :airfields, only: :show
+
+  resource :airfields, only: :show do
+    post :init
+  end
 
   root 'airfields#show'
   mount ActionCable.server => '/cable'

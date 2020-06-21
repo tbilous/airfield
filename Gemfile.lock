@@ -307,6 +307,9 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.10)
     timecop (0.9.1)
+    turbolinks (5.2.1)
+      turbolinks-source (~> 5.2)
+    turbolinks-source (5.2.0)
     tzinfo (1.2.7)
       thread_safe (~> 0.1)
     unicode-display_width (1.7.0)
@@ -375,6 +378,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   state_machines-mongoid
   timecop
+  turbolinks
   virtus
   web-console (>= 3.3.0)
   webpacker (~> 4.0)

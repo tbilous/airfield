@@ -27,14 +27,14 @@ module Flyable
 
     def broadcast
       json = broadcast_serialize
-      ActionCable.server.broadcast "plain_#{json.dig('plain', 'id')}", json
+      ActionCable.server.broadcast "plain_#{json['id']}", json
+      # ActionCable.server.broadcast "plain_#{json.dig('id')}", json
     end
 
     def broadcast_serialize
-      { plain:
-          { id: id.to_s, state: state },
-        plain_histories: plain_histories.map do |i|
-          { id: i.id.to_s, created: i.created_at.to_formatted_s(:short) }
+      { id: id.to_s, state: state,
+        history: plain_histories.map do |i|
+          { id: i.id.to_s, state: i.state, created: i.created_at.to_formatted_s(:short) }
         end }.as_json
     end
 

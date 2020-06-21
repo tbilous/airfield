@@ -8,4 +8,10 @@ RSpec.describe AirfieldsController, type: :controller do
 
     it { expect(response.status).to eq 200 }
   end
+
+  describe '#init' do
+    subject { post :init }
+
+    it { expect { subject }.to change(Plain, :count).by(5) }
+  end
 end
