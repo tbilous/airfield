@@ -10,4 +10,7 @@ production:
   - critical
   - default
   - low
-  - railway
+  - runway
+
+process_limits:
+  runway: 1

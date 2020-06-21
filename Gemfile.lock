@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/tbilous/sidekiq-limit_fetch.git
+  revision: d051077d754861a5acc4b262192236e087950ff0
+  branch: fix_redis_reloading_bug
+  specs:
+    sidekiq-limit_fetch (3.4.0)
+      sidekiq (>= 4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -358,6 +366,7 @@ DEPENDENCIES
   shoulda-matchers (~> 3.1)
   sidekiq
   sidekiq-failures
+  sidekiq-limit_fetch!
   sidekiq-status
   slim
   slim-rails

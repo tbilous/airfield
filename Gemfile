@@ -44,6 +44,7 @@ gem 'virtus'
 # Background Tasks
 gem 'sidekiq'
 gem 'sidekiq-failures'
+gem 'sidekiq-limit_fetch', git: 'https://github.com/tbilous/sidekiq-limit_fetch.git', branch: 'fix_redis_reloading_bug'
 gem 'sidekiq-status'
 
 # mongodb

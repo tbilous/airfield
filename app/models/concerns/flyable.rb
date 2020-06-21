@@ -13,9 +13,11 @@ module Flyable
         transition taxiway: :fly
       end
 
+      # rubocop:disable Style/SymbolProc
       before_transition any => :taxiway do |plain|
-        puts plain
+        plain.proceed_runway
       end
+      # rubocop:enable Style/SymbolProc
 
       after_transition any => any do |plain|
         plain.send(:write_history)
@@ -34,6 +36,10 @@ module Flyable
         plain_histories: plain_histories.map do |i|
           { id: i.id.to_s, created: i.created_at.to_formatted_s(:short) }
         end }.as_json
+    end
+
+    def proceed_runway
+      RunwayJob.perform_later(id.to_s)
     end
   end
 end

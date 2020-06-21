@@ -36,5 +36,6 @@ module Airfield
     config.load_defaults 6.0
     config.autoloader = :classic
     config.generators.system_tests = nil
+    config.active_job.queue_adapter = :sidekiq
   end
 end

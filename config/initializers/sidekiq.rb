@@ -58,7 +58,7 @@ end
 Sidekiq.configure_client do |config|
   # accepts :expiration (optional)
   Sidekiq::Status.configure_client_middleware config, expiration: 30.minutes
-  config.redis = { namespace: :claim_service, url: (ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/0') }
+  config.redis = { namespace: :airfield, url: (ENV['REDIS_URL'] || 'redis://127.0.0.1:6379/0') }
 end
 
 # HEROKU CONFIGS

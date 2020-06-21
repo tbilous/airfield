@@ -9,4 +9,5 @@ Rails.application.routes.draw do
 
   root 'airfields#show'
   mount ActionCable.server => '/cable'
+  mount Sidekiq::Web => '/sidekiq'
 end

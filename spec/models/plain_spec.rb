@@ -19,4 +19,14 @@ RSpec.describe Plain, type: :model do
       end
     end
   end
+
+  describe '#proceed_runway' do
+    let(:plain) { described_class.create }
+
+    it 'matches with enqueued job' do
+      expect do
+        plain.taxiway
+      end.to have_enqueued_job(RunwayJob).with(plain.id.to_s)
+    end
+  end
 end
