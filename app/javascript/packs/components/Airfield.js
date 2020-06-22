@@ -1,25 +1,18 @@
 import React from "react";
-import { findIndex } from "lodash";
-import api from "./api";
+import api from "../clients/api";
 import PlainList from "./PlainList";
 
 class Airfield extends React.Component {
-  constructor(props) {
-    super(props);
-    this.cableHandler = this.cableHandler.bind(this)
-    this.state = { plains: [] }
-  }
+  state = {plains: []}
 
   componentDidMount() {
-    this.onPlainsLoad();
+    this.onPlainsLoad().then(
+      (response) => this.setState({plains: response.data.plains})
+    );
   }
 
   onPlainsLoad = async () => {
-    const response = await api.get("/plains");
-
-    this.setState({
-      plains: response.data.plains
-    })
+    return await api.get("/plains");
   }
 
   onPlainsInit = async () => {
@@ -34,19 +27,20 @@ class Airfield extends React.Component {
     await api.post(`/plains/${plain}/take_off`);
   }
 
-  cableHandler(plain, data) {
+  cableHandler = (data) => {
     let arr = this.state.plains
-    let index = findIndex(arr, { id: plain.id } )
+    const index = this.state.plains.findIndex((el) => {
+      return el.id === data.id;
+    })
     arr[index] = data
+
     this.setState({
       plains: arr
     })
-
-    console.log(this.state.plains)
   }
 
   render() {
-    return(
+    return (
       <div className="ui container">
         <div className="ui grid">
           <div className="ui row">

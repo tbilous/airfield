@@ -1,7 +1,7 @@
 class PlainChannel < ApplicationCable::Channel
   def subscribed
-    reject if params['plain_id'].blank?
-    plain = Plain.find_by(id: params['plain_id'])
+    reject if params['id'].blank?
+    plain = Plain.find_by(id: params['id'])
     reject unless plain
 
     stream_from "plain_#{plain&.id}"
