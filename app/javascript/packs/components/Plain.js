@@ -16,13 +16,11 @@ const Plain = ({plain, onPlainSelect, cableHandler}) => {
   }
 
   return (
-    <div onClick={() => sendToFly(plain)}>
-      <div className="ui segment">
-        <div className={plain.state}>
-          <div className="ui list">
-            <div>Current position: {plain.state}</div>
-            {plain.history.map((h) => <div key={h.id}>Added to {h.state}: {h.created}</div>)}
-          </div>
+    <div className="ui segment" onClick={() => sendToFly(plain)}>
+      <div className={plain.state}>
+        <div className="ui list">
+          <div>Current position: {plain.state}</div>
+          {plain.history.map((h) => <div key={h.id}>Added to {h.state}: {h.created}</div>)}
         </div>
       </div>
     </div>
